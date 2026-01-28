@@ -1,10 +1,23 @@
 using UnityEngine;
-
+using UnityEngine.AI;
+using UnityEngine.InputSystem;
 public abstract class DogBaseState
 {
-    public abstract void EnterState(DogStateManager dog);
+    
+    protected readonly DogController dog;
+    protected readonly Animator dogAnimator; 
+    protected DogBaseState(DogController dog, Animator dogAnimator)
+    {
+        this.dog = dog;
+        this.dogAnimator = dogAnimator;
+    }
+    public virtual void OnEnter()
+    {
+        
+    }
 
-    public abstract void UpdateState(DogStateManager dog);
-
-    public abstract void OnCollisionEnter(DogStateManager dog);
+    public virtual void Update()
+    {
+        
+    }
 }

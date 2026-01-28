@@ -2,18 +2,15 @@ using UnityEngine;
 
 public class DogIdleState : DogBaseState
 {
-    public override void EnterState(DogStateManager dog)
+    public DogIdleState(DogController dog, Animator animator) : base(dog, animator) { }
+    public override void OnEnter()
     {
         
     }
 
-    public override void UpdateState(DogStateManager dog)
+    public override void Update()
     {
-        
+        // TBD
     }
 
-    public override void OnCollisionEnter(DogStateManager dog)
-    {
-        
-    }
 }

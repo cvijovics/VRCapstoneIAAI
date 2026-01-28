@@ -2,18 +2,15 @@ using UnityEngine;
 
 public class DogPetState : DogBaseState
 {
-    public override void EnterState(DogStateManager dog)
+    public DogPetState(DogController dog, Animator animator) : base(dog, animator) { }
+    public override void OnEnter()
     {
-        
+        // Fade animation
     }
 
-    public override void UpdateState(DogStateManager dog)
+    public override void Update()
     {
-        
+        // Play pet logic
     }
 
-    public override void OnCollisionEnter(DogStateManager dog)
-    {
-        
-    }
 }
