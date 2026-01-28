@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "Player Actions",
+    "maps": [
+        {
+            "name": "Dog Interaction",
+            "id": "d2055e84-57c3-4106-b125-2338a9845a12",
+            "actions": [
+                {
+                    "name": "Beckon",
+                    "type": "Button",
+                    "id": "01bf27f2-b2b6-439e-a3c3-f58ea74ebc02",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7d79a63f-99f6-4b9c-b497-004e371dfde1",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Beckon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
