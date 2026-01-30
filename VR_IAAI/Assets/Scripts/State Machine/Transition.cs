@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Transition
+public class Transition : ITransition
 {
     public IState To { get; }
     public IPredicate Condition { get; }

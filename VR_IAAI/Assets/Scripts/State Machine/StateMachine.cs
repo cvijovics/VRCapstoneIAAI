@@ -1,5 +1,7 @@
 using UnityEngine;
-
+using System;
+using System.Collections.Generic;
+using UnityEditorInternal;
 public class StateMachine
 {
     StateNode current;
@@ -22,9 +24,9 @@ public class StateMachine
         current.State?.FixedUpdate();
     }
 
-    public void SetState()
+    public void SetState(IState state)
     {
-        current = nodes[StateMachine.GetType()];
+        current = nodes[state.GetType()];
         current.State?.OnEnter();
     }
 
@@ -57,7 +59,7 @@ public class StateMachine
 
     public void AddTransition(IState from, IState to, IPredicate condition)
     {
-        GetOrAddNode(from).AddTransitoin(GetOrAddNode(to).State, condition);
+        GetOrAddNode(from).AddTransition(GetOrAddNode(to).State, condition);
     }
 
     public void AddAnyTransition(IState to, IPredicate condition)
@@ -89,7 +91,7 @@ public class StateMachine
 
         public void AddTransition(IState to, IPredicate condition)
         {
-            Transitions.add(new Transition(to, condition));
+            Transitions.Add(new Transition(to, condition));
         }
     }
 }

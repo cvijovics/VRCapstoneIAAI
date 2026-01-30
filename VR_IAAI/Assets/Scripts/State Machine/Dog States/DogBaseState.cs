@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-public abstract class DogBaseState
+public abstract class DogBaseState : IState
 {
     
     protected readonly DogController dog;
@@ -17,6 +17,16 @@ public abstract class DogBaseState
     }
 
     public virtual void Update()
+    {
+        
+    }
+
+    public virtual void FixedUpdate()
+    {
+        
+    }
+
+    public virtual void OnExit()
     {
         
     }

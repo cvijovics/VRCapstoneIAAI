@@ -1,6 +1,7 @@
 using UnityEngine;
-
-public class FuncPredicate
+using System;
+using System.Collections.Generic;
+public class FuncPredicate : IPredicate
 {
     readonly Func<bool> func;
 
