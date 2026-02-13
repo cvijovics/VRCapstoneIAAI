@@ -18,7 +18,7 @@ public class DogApproachState : DogBaseState
 
     public override void FixedUpdate()
     {
-        dog.destinationHandler();
+        dog.DestinationHandler();
     }
 
     public override void OnExit()

@@ -8,12 +8,16 @@ using UnityEngine.InputSystem;
 public class DogController : MonoBehaviour
 {
     public InputActionReference beckonAction;
+    public InputActionReference ballAction;
     [SerializeField] private GameObject dog;
     [SerializeField] private GameObject player;
-    // Ball object here
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private GameObject ball;
+    private NavMeshAgent agent;
     [SerializeField] private Animator dogAnimator;
-    private bool isRunning = false; // True when dog is running to player
+    private bool isRunning = false; // True when dog is running
+    private bool hasBall = false;
+    private GameObject currentDest;
+    private BallController ballController;
     private bool isPet = false; // True when player has touched dog physically
 
     StateMachine stateMachine;
@@ -54,6 +58,7 @@ public class DogController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        ballController = GetComponent<BallController>();
     }
 
     void Update()
@@ -68,23 +73,26 @@ public class DogController : MonoBehaviour
 
     public void RunToPlayer(InputAction.CallbackContext context)
     {
-        Debug.Log("Dog is running to player at position: " + player.transform.position);
         if (context.performed && !isRunning)
         {
             isRunning = true;
-            dogAnimator.SetBool("isRunning", true);
+            currentDest = player;
         }
     }
 
-    public void destinationHandler()
+    public void RunToBall()
     {
-        Vector3 targetPos = new Vector3();
-        // if running to player
+        if (!isRunning)
+        {
+            isRunning = true;
+            currentDest = ball;
+        }
+    }
 
-        
-        // if running to ball
-        targetPos = player.transform.position; // change logic later
-        ApproachTarget(targetPos);
+    public void DestinationHandler()
+    {
+        Debug.Log("Dog is running towards " + currentDest.name + " at position " + currentDest.transform.position);
+        ApproachTarget(currentDest.transform.position);
     }
     public void ApproachTarget(Vector3 targetPos)
     {
@@ -97,23 +105,38 @@ public class DogController : MonoBehaviour
             Debug.Log("stopping distance: " + agent.stoppingDistance);
             if ( Vector3.Distance( agent.destination, agent.transform.position) <= agent.stoppingDistance)
             {
+                if (hasBall)
+                {
+                    ballController.DetachObject();
+                    hasBall = false;
+                }
                 agent.velocity = new Vector3(0,0,0);
                 isRunning = false;
                 dogAnimator.SetBool("isRunning", false);
+                if (currentDest == ball)
+                {
+                    //play pickup anim
+                    ballController.AttachObject();
+                    currentDest = player;
+                    isRunning = true;
+                    hasBall = true;
+                } 
             }
         } 
     }
-
-    public void petResponse()
+    public void PetResponse()
     {
         if (isPet)
         {
             //set animator
+
             //maybe set timer for pet duration?
+            
+            isPet = false;
         }
     }
 
-    public void idleRoam()
+    public void IdleRoam()
     {
         
     }
