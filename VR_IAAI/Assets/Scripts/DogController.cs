@@ -1,4 +1,7 @@
-using System.Collections.Generic;
+using System.Collections;
+
+
+
 //using System.Numerics;
 using NUnit.Framework.Interfaces;
 using UnityEngine;
@@ -9,12 +12,15 @@ public class DogController : MonoBehaviour
 {
     public InputActionReference beckonAction;
     public InputActionReference ballAction;
+    [SerializeField] private AudioController audioController;
+    [SerializeField] private AudioClip whistleClip;
     [SerializeField] private GameObject dog;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject ball;
     private NavMeshAgent agent;
     [SerializeField] private Animator dogAnimator;
     private bool isRunning = false; // True when dog is running
+    private bool isRoaming = false;
     private bool hasBall = false;
     private GameObject currentDest;
     private BallController ballController;
@@ -75,6 +81,7 @@ public class DogController : MonoBehaviour
     {
         if (context.performed && !isRunning)
         {
+            audioController.PlaySFX(whistleClip, player.transform, 0.3f);
             isRunning = true;
             currentDest = player;
         }
@@ -86,6 +93,15 @@ public class DogController : MonoBehaviour
         {
             isRunning = true;
             currentDest = ball;
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            isPet = true;
+            dogAnimator.SetBool("isPet", true);
         }
     }
 
@@ -112,6 +128,11 @@ public class DogController : MonoBehaviour
                 }
                 agent.velocity = new Vector3(0,0,0);
                 isRunning = false;
+                isRoaming = false;
+                if (currentDest.name == "RandomPoint")
+                {
+                    Destroy(currentDest);
+                }
                 dogAnimator.SetBool("isRunning", false);
                 if (currentDest == ball)
                 {
@@ -124,20 +145,55 @@ public class DogController : MonoBehaviour
             }
         } 
     }
+
     public void PetResponse()
     {
         if (isPet)
         {
-            //set animator
-
-            //maybe set timer for pet duration?
-            
-            isPet = false;
+            StartCoroutine(PetWait(1.5f));
         }
+    }
+
+    IEnumerator PetWait(float waitTime)
+    {
+        isPet = false;
+        yield return new WaitForSeconds(waitTime);
+        dogAnimator.SetBool("isPet", false);
     }
 
     public void IdleRoam()
     {
+        if (!isRoaming)
+        {
+            StartCoroutine(RoamWait(Random.Range(2f, 5f)));
+        }
+    }
+
+    public Vector3 GetRandomPoint(float radius)
+    {
+        var randomDirection = Random.insideUnitSphere * radius;
+        randomDirection.y = 0; // Keep the point on the ground
+        var randomPoint = transform.position + randomDirection;
+
+        NavMeshHit hit;
+        Vector3 finalPosition = transform.position;
+
+        if (NavMesh.SamplePosition(randomPoint, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
+    }
+
+    IEnumerator RoamWait(float waitTime)
+    {
+        isRoaming = true;
+        yield return new WaitForSeconds(waitTime);
+        Vector3 randomPoint = GetRandomPoint(10f);
+        currentDest = new GameObject("RandomPoint") { transform = { position = randomPoint } };
+        isRunning = true;
         
+
+
     }
 }

@@ -1,0 +1,45 @@
+HOW TO USE THIS PACKAGE
+=======================
+The Prefabs included in this package are arranged in a way that should make it easy to build your own levels. I have included a step by step guide below to help you along the way. Of course you can use these assets any way you see fit, but the guidelines below have been most efficient for my personal work-flow. 
+
+I have created a series of videos which you can find on the YouTube channel for 'Almighty Assets'. (Link below) Feel free to use YouTube's Comments and please don't forget to Like, Subscribe and Turn On Notifications.
+
+YouTube Channel: https://www.youtube.com/channel/UCqnV9V7i5IQgF_BswKmIOww
+
+NOTES ABOUT GRID SNAPPING
+=========================
+* Each tile is 10x10 units with slope heights of 5 units.
+* Set Unity's Snap Settings to increments of 5 units for maximum efficiency.
+* Drag & Drop Prefabs into the Hierarchy (Remember to set the Transform's Position to 0, 0, 0).
+* Transform Positions for Tiles should be whole (or half) number values (Examples; 1, -25, 40.5)
+* Use Unity's Snapping (Hold CTRL while moving) to move Tiles around in the scene.
+
+
+ENVIRONMENT BUILDING GUIDE
+==========================
+1: Creeks & Paths
+* Use Unity's grid snapping to rotate and position Creeks & Paths into your scene.
+* Each tile should be aligned with Unity's grid to ensure that there are no gaps between tiles.
+* Use Bridge Prefabs at Creek/Path junctions.
+
+2: Foundations
+* Use grid snapping to place Grass Slopes to form modular hills to your scenery.
+* Replace Straight Slopes with Creek & Path Slopes wherever needed.
+* Use grid snapping to place Grass Fields in void space areas.
+* Be sure to include Grass Fields on higher/lower areas surrounded by Slopes.
+* Use grid snapping to place Dirt Foundations in areas where you might build man-made structures later on.
+
+3: Elevations
+* Use Mountains to surround your environment.
+* Set Hills and Plateaus to break up the flatness of your environment.
+* Set Cliffs in special regions for added flare.
+* Leave plenty of flattened areas for forests and buildings later.
+
+4: Nested Prefabs
+* Use Fields & Hill Nested Prefabs to fill in large gaps in the scene.
+* Create your own personal Nested Prefabs by using existing Hills & Decorative Prefabs.
+
+5: Fine-Tuning
+* Use Decorative Prefabs such as Rocks & Trees to continue filling in smaller gaps.
+* Inspect your scene and consider moving some objects around to suit the environment.
+* Use the included Character Controller to walk around your scene for closer inspection.

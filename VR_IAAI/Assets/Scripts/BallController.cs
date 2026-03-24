@@ -9,6 +9,10 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
     [SerializeField] private Transform ballPosition;
+    [SerializeField] private AudioController audioController;
+    [SerializeField] private AudioClip pickupClip;
+    [SerializeField] private AudioClip dropClip;
+
     public void AttachObject()
     {
         ball.transform.SetParent(ballPosition);
@@ -21,5 +25,16 @@ public class BallController : MonoBehaviour
     {
         ball.transform.parent = null;
         ball.GetComponent<Rigidbody>().isKinematic = false;
+    }
+
+
+    public void PlayPickupSound()
+    {
+        audioController.PlaySFX(pickupClip, ball.transform, 0.4f);
+    }
+
+    public void PlayDropSound()
+    {
+        audioController.PlaySFX(dropClip, ball.transform, 0.4f);
     }
 }

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6cf77fe5d4debaa4283a9dc248cd1400
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182172
+  packageName: 'Core Environment: Great Outdoors'
+  packageVersion: 1.01
+  assetPath: Assets/AlmightyAssets/Core Environment Series/Great Outdoors/Models/Materials/water
+    surface.mat
+  uploadId: 401270

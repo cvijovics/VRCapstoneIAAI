@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b2cd3d20f9b09a6498ebeb702d5e3a1d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182172
+  packageName: 'Core Environment: Great Outdoors'
+  packageVersion: 1.01
+  assetPath: Assets/AlmightyAssets/(Controllers)/FP Controller/Materials/player controller.mat
+  uploadId: 401270
