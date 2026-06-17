@@ -10,7 +10,7 @@ public class DogIdleState : DogBaseState
 
     public override void Update()
     {
-        //dog.IdleRoam();
+        dog.IdleRoam();
     }
 
 }
